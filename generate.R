@@ -1,3 +1,4 @@
+#!/usr/bin/env Rscript
 docs = list.files("man")
 
 for (i in 1:length(docs)) {
