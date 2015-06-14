@@ -21,7 +21,8 @@ allShortestPaths(fromNode,
                  relType, 
                  toNode, 
                  direction = "out", 
-                 max_depth = 1)
+                 max_depth = 1,
+                 cost_property = character())
 </pre>
 
 
@@ -47,6 +48,10 @@ allShortestPaths(fromNode,
 <tr valign="top"><td><code>max_depth</code></td>
 <td>
 <p>The maximum depth of the path. Accepts an integer.</p>
+</td></tr>
+<tr valign="top"><td><code>cost_property</code></td>
+<td>
+<p>If retrieving a weighted shortest path, the name of the relationship property that contains the weights. Accepts a string.</p>
 </td></tr>
 </table>
 
