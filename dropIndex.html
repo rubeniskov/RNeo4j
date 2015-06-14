@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Indexes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for dropIndex"><tr><td>dropIndex</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Indexes</h2>
+
+<h3>Description</h3>
+
+<p>Drop the index(es) for a given node label and property key or for the entire graph database.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+dropIndex(graph, label = character(), key = character(), all = FALSE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>graph</code></td>
+<td>
+<p>A graph object.</p>
+</td></tr>
+<tr valign="top"><td><code>label</code></td>
+<td>
+<p>A node label for which to drop the index. Accepts a string.</p>
+</td></tr>
+<tr valign="top"><td><code>key</code></td>
+<td>
+<p>A property key for which to drop the index. Accepts a string.</p>
+</td></tr>
+<tr valign="top"><td><code>all</code></td>
+<td>
+<p>Set to TRUE to drop all indexes from the graph.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>Dropping a uniqueness constraint necessarily drops the index as well. It is unnecessary to use <code>dropIndex</code> if <code>dropConstraint</code> has already been applied to the same <code>(label, key)</code> pair.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>addIndex</code>, <code>getIndex</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
+createNode(graph, "Person", name = "Nicole", status = "Employed")
+createNode(graph, "Person", name = "Drew", status = "Employed")
+createNode(graph, "Person", name = "Aaron", status = "Unemployed")
+
+createNode(graph, "School", name = "University of Texas at Austin", type = "Public")
+createNode(graph, "School", name = "Louisiana State University", type = "Public")
+
+addIndex(graph, "Person", "status")
+addIndex(graph, "School", "type")
+
+getIndex(graph)
+
+# Drop the index on Person nodes by the name property.
+dropIndex(graph, "Person", "status")
+
+getIndex(graph)
+
+# Drop all indexes from the graph database.
+dropIndex(graph, all = TRUE)
+
+getIndex(graph)
+</pre>
+
+
+</body></html>

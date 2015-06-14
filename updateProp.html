@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Update Node and Relationship Properties</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for updateProp"><tr><td>updateProp</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Update Node and Relationship Properties</h2>
+
+<h3>Description</h3>
+
+<p>For a node or relationship object, update its properties. Existing properties can be overridden and new properties can be added.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+updateProp(object, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>object</code></td>
+<td>
+<p>A node or relationship object.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>Property updates or additions in the form key = value (separated by commas).</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>A node or relationship object.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>deleteProp</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
+alice = createNode(graph, "Person", name = "Alice")
+
+# Update the age property and add an eyes property to the alice node.
+alice = updateProp(alice, age = 24, eyes = "green")
+</pre>
+
+
+</body></html>

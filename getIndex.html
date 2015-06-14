@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Indexes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for getIndex"><tr><td>getIndex</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Indexes</h2>
+
+<h3>Description</h3>
+
+<p>Get all indexes for a given label or for the entire graph database.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+getIndex(graph, label = character())
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>graph</code></td>
+<td>
+<p>A graph object.</p>
+</td></tr>
+<tr valign="top"><td><code>label</code></td>
+<td>
+<p>A node label for which to view all indexes. Accepts a string.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>Supplying only a graph object as an argument returns all indexes in the graph database.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A data frame. Returns NULL if no indexes are found.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>addIndex</code>, <code>dropIndex</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
+createNode(graph, "Person", name = "Nicole", status = "Employed")
+createNode(graph, "Person", name = "Drew", status = "Employed")
+createNode(graph, "Person", name = "Aaron", status = "Unemployed")
+
+createNode(graph, "School", name = "University of Texas at Austin", type = "Public")
+createNode(graph, "School", name = "Louisiana State University", type = "Public")
+
+addIndex(graph, "Person", "status")
+addIndex(graph, "School", "type")
+
+# Get all indexes on the Person node label.
+getIndex(graph, "Person")
+
+# Get all indexes in the graph database.
+getIndex(graph)
+</pre>
+
+
+</body></html>

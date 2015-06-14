@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Connect to the Database</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for startGraph"><tr><td>startGraph</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Connect to the Database</h2>
+
+<h3>Description</h3>
+
+<p>Establish a connection to the graph database.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+startGraph(url, 
+           username = character(), 
+           password = character(),
+           opts = list())
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>url</code></td>
+<td>
+<p>The URL of the graph database. Accepts a string.</p>
+</td></tr>
+<tr valign="top"><td><code>username</code></td>
+<td>
+<p>If the database is remote, your username. Accepts a string.</p>
+</td></tr>
+<tr valign="top"><td><code>password</code></td>
+<td>
+<p>If the database is remote, your password. Accepts a string.</p>
+</td></tr>
+<tr valign="top"><td><code>opts</code></td>
+<td>
+<p>Optional HTTP settings.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>A graph object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+# A Neo4j &lt;= 2.1 db.
+graph = startGraph("http://localhost:7474/db/data/")
+                   
+# A Neo4j &gt;= 2.2 db.
+graph = startGraph("http://localhost:7474/db/data/", 
+                   username = "neo4j",
+                   password = "password")
+           
+# Set a timeout of 3 seconds.
+graph = startGraph("http://localhost:7474/db/data/", 
+                   opts = list(timeout=3))
+</pre>
+
+
+</body></html>

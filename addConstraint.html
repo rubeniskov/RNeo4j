@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Uniqueness Constraints</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for addConstraint"><tr><td>addConstraint</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Uniqueness Constraints</h2>
+
+<h3>Description</h3>
+
+<p>Add a uniqueness constraint to a label and property key.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+addConstraint(graph, label, key)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>graph</code></td>
+<td>
+<p>A graph object.</p>
+</td></tr>
+<tr valign="top"><td><code>label</code></td>
+<td>
+<p>A node label on which to add the uniqueness constraint. Accepts a string.</p>
+</td></tr>
+<tr valign="top"><td><code>key</code></td>
+<td>
+<p>A property key by which the label will be uniquely constrained. Accepts a string.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>A uniqueness constraint cannot be added to a (label, key) pair that already has an index applied. Attempting to add a uniqueness constraint where an index already exists results in an error. Use <code>getIndex</code> to view any pre-existing indexes. If you wish to add a uniqueness constraint, use <code>dropIndex</code> to drop the index.
+</p>
+<p>Adding a uniqueness constraint will necessarily create an index.
+</p>
+<p>Attempting to add a uniqueness constraint to data that violates the uniqueness constraint results in an error.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>getConstraint</code>, <code>dropConstraint</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
+createNode(graph, "Person", name = "Alice")
+createNode(graph, "Person", name = "Bob")
+
+addConstraint(graph, "Person", "name")
+</pre>
+
+
+</body></html>

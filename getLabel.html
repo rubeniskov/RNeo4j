@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Node Labels</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for getLabel"><tr><td>getLabel</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Node Labels</h2>
+
+<h3>Description</h3>
+
+<p>Get all node labels for a given node object or for the entire graph database.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+getLabel(object)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>object</code></td>
+<td>
+<p>An object for which to get all node labels. Accepts a node or graph object (see details).</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>Supplying a node object returns all node labels for the given node. Supplying a graph object returns all node labels in the graph. 
+</p>
+
+
+<h3>Value</h3>
+
+<p>A character vector.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>addLabel</code>, <code>dropLabel</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
+alice = createNode(graph, name = "Alice")
+bob = createNode(graph, name = "Bob")
+
+addLabel(alice, "Student")
+addLabel(bob, "Person", "Student")
+
+# View all labels on the alice node.
+getLabel(alice)
+
+# View all node labels in the graph database.
+getLabel(graph)
+</pre>
+
+
+</body></html>

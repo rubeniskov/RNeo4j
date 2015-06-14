@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Node Labels</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for addLabel"><tr><td>addLabel</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Node Labels</h2>
+
+<h3>Description</h3>
+
+<p>Add a label or multiple labels to an existing node object.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+addLabel(node, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>node</code></td>
+<td>
+<p>A node object to which to add the label(s).</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>The label(s) to add to the node. Accepts a string or strings separated by commas.</p>
+</td></tr>
+</table>
+
+
+<h3>See Also</h3>
+
+<p><code>getLabel</code>, <code>dropLabel</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
+alice = createNode(graph, name = "Alice")
+bob = createNode(graph, name = "Bob")
+
+# Add a single label.
+addLabel(alice, "Student")
+
+# Add multiple labels.
+addLabel(bob, "Person", "Student")
+</pre>
+
+
+</body></html>

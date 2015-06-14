@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Clear the Database</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for clear"><tr><td>clear</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Clear the Database</h2>
+
+<h3>Description</h3>
+
+<p>Delete all nodes, relationships, constraints, and indexes from the graph database.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+clear(graph, input = TRUE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>graph</code></td>
+<td>
+<p>The graph object to be cleared.</p>
+</td></tr>
+<tr valign="top"><td><code>input</code></td>
+<td>
+<p>Whether or not confirmation (in the form of external input) from the user should be required.</p>
+</td></tr>
+</table>
+
+
+<h3>Examples</h3>
+
+<pre>
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+</pre>
+
+
+</body></html>

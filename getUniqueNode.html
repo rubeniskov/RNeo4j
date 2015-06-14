@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Retrieve Nodes by Label and Property</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for getUniqueNode"><tr><td>getUniqueNode</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Retrieve Nodes by Label and Property</h2>
+
+<h3>Description</h3>
+
+<p>Retrieve a single node from the graph by specifying its label and unique key = value pair.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+getUniqueNode(graph, .label, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>graph</code></td>
+<td>
+<p>A graph object.</p>
+</td></tr>
+<tr valign="top"><td><code>.label</code></td>
+<td>
+<p>A node label. Accepts a string.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>A key = value pair by which the node label is uniquely constrained. Only accepts one key = value pair.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>A uniqueness constraint must exist on the (label, key) pair in order to use this function. Specify a uniqueness constraint first with <code>addConstraint</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A node object. Returns NULL if a node is not found.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>getLabeledNodes</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
+createNode(graph, "Person", name = "Alice")
+createNode(graph, "Person", name = "Bob")
+
+addConstraint(graph, "Person", "name")
+
+alice = getUniqueNode(graph, "Person", name = "Alice")
+</pre>
+
+
+</body></html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Transactional Endpoint</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for Transactions"><tr><td>Transactions</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Transactional Endpoint</h2>
+
+<h3>Description</h3>
+
+<p>Send Cypher queries through the transactional endpoint.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+newTransaction(graph)
+appendCypher(transaction, query, ...)
+commit(transaction)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>graph</code></td>
+<td>
+<p>A graph object.</p>
+</td></tr>
+<tr valign="top"><td><code>transaction</code></td>
+<td>
+<p>A transaction object.</p>
+</td></tr>
+<tr valign="top"><td><code>query</code></td>
+<td>
+<p>A Cypher query in the form of a string.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>Optional parameters to pass to the query in the form key = value, if applicable.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>As of now, there is no functionality for returning data from the transactional endpoint.
+</p>
+
+
+<h3>Value</h3>
+
+<p><code>newTransaction</code> returns a transaction object. Both <code>appendCypher</code> and <code>commit</code> return NULL.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
+data = data.frame(Origin = c("SFO", "AUS", "MCI"),
+                  FlightNum = c(1, 2, 3),
+                  Destination = c("PDX", "MCI", "LGA"))
+
+
+query = "
+MERGE (origin:Airport {name:{origin_name}})
+MERGE (destination:Airport {name:{dest_name}})
+CREATE (origin)&lt;-[:ORIGIN]-(:Flight {number:{flight_num}})-[:DESTINATION]-&gt;(destination)
+"
+
+t = newTransaction(graph)
+
+for (i in 1:nrow(data)) {
+  origin_name = data[i, ]$Origin
+  dest_name = data[i, ]$Dest
+  flight_num = data[i, ]$FlightNum
+  
+  appendCypher(t, 
+               query, 
+               origin_name = origin_name, 
+               dest_name = dest_name, 
+               flight_num = flight_num)
+}
+
+commit(t)
+
+cypher(graph, "MATCH (o:Airport)&lt;-[:ORIGIN]-(f:Flight)-[:DESTINATION]-&gt;(d:Airport)
+               RETURN o.name, f.number, d.name")
+</pre>
+
+
+</body></html>

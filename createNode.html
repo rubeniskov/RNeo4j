@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Create Nodes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for createNode"><tr><td>createNode</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Create Nodes</h2>
+
+<h3>Description</h3>
+
+<p>Create a node in the graph with the given label and properties.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+createNode(graph, .label = character(), ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>graph</code></td>
+<td>
+<p>A graph object.</p>
+</td></tr>
+<tr valign="top"><td><code>.label</code></td>
+<td>
+<p>Optional node label(s). Accepts a string or vector of strings.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>Optional node properties in the form key = value (separated by commas).</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>A node object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
+# Node without properties.
+mystery = createNode(graph)
+
+# Node with properties.
+alice = createNode(graph, name = "Alice", age = 23)
+
+# Node with label and properties. Arrays can be added as properties as well.
+bob = createNode(graph, "Person", name = "Bob", age = 24, kids = c("Jenny", "Larry"))
+
+# Node with multiple labels and properties.
+charles = createNode(graph, 
+					 c("Person", "Student"), 
+					 name = "Charles", 
+					 age = 21)
+</pre>
+
+
+</body></html>

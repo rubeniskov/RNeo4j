@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Indexes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for addIndex"><tr><td>addIndex</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Indexes</h2>
+
+<h3>Description</h3>
+
+<p>Add an index to a node label and property key.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+addIndex(graph, label, key)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>graph</code></td>
+<td>
+<p>A graph object.</p>
+</td></tr>
+<tr valign="top"><td><code>label</code></td>
+<td>
+<p>A node label on which to add the index. Accepts a string.</p>
+</td></tr>
+<tr valign="top"><td><code>key</code></td>
+<td>
+<p>A property key by which the label will be indexed. Accepts a string.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>An index already exists for any (label, key) pair that has a uniqueness constraint applied. Attempting to add an index where a uniqueness constraint already exists results in an error. Use <code>getConstraint</code> to view any pre-existing uniqueness constraints. If a uniqueness constraint already exists for the (label, key) pair, then it must be true that the index exists as well; adding an index is unnecessary.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>getIndex</code>, <code>dropIndex</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
+createNode(graph, "Person", name = "Nicole", status = "Employed")
+createNode(graph, "Person", name = "Drew", status = "Employed")
+createNode(graph, "Person", name = "Aaron", status = "Unemployed")
+
+addIndex(graph, "Person", "status")
+</pre>
+
+
+</body></html>

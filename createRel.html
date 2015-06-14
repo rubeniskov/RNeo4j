@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Create Relationships</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for createRel"><tr><td>createRel</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Create Relationships</h2>
+
+<h3>Description</h3>
+
+<p>Create a relationship between two nodes with the given type and properties.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+createRel(.fromNode, .relType, .toNode, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>.fromNode</code></td>
+<td>
+<p>A node object from which the relationship will be outgoing.</p>
+</td></tr>
+<tr valign="top"><td><code>.relType</code></td>
+<td>
+<p>A relationship type in the form of a string.</p>
+</td></tr>
+<tr valign="top"><td><code>.toNode</code></td>
+<td>
+<p>A node object to which the relationship will be incoming.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>Optional relationship properties in the form key = value (separated by commas).</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>A relationship object.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>startNode</code>, <code>endNode</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
+alice = createNode(graph, "Person", name = "Alice")
+bob = createNode(graph, "Person", name = "Bob")
+charles = createNode(graph, "Person", name = "Charles")
+
+# Relationship without properties.
+createRel(alice, "WORKS_WITH", bob)
+
+# Relationship with properties.
+createRel(bob, "KNOWS", charles, since = 2000, through = "Work")
+</pre>
+
+
+</body></html>
